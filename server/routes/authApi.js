@@ -20,6 +20,7 @@ router.get("/", auth, async (req, res) => {
     }
 });
 
+//Asdfghjkl09
 router.post(
     "/",
     [
@@ -34,6 +35,7 @@ router.post(
 
         try {
             const { email, password } = req.body;
+            // let user = await User.findOne({ email, role:"customer" });
             let user = await User.findOne({ email });
             if (!user) {
                 return res

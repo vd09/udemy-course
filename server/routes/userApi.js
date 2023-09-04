@@ -26,8 +26,8 @@ router.post(
 
         try {
             console.log(req.body);
-            const { name, email, password } = req.body;
-            let user = await User.findOne({ email });
+            const { name, email, password, role = "customer" } = req.body;
+            let user = await User.findOne({ email, role });
             if (user) {
                 return res
                     .status(400)
@@ -38,6 +38,7 @@ router.post(
                 name,
                 email,
                 password,
+                role
             });
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(password, salt);
